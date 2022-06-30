@@ -1,12 +1,15 @@
 package com.hibernatemapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="stud1")
+@Table(name="studdentmany")
 public class Student {
 	
 	@Id
@@ -14,14 +17,14 @@ public class Student {
 	private String name;
 	private int marks;
 	
-	@OneToOne
-	private Laptop laptop;
+	@ManyToMany
+	private List<Laptop> laptop =  new ArrayList<Laptop>();
 	
 	
-	public Laptop getLaptop() {
+	public List<Laptop> getLaptop() {
 		return laptop;
 	}
-	public void setLaptop(Laptop laptop) {
+	public void setLaptop(List<Laptop> laptop) {
 		this.laptop = laptop;
 	}
 	public int getRollno() {

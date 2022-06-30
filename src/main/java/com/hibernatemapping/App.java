@@ -18,15 +18,34 @@ public class App
     	laptop.setLid(101);
     	laptop.setLname("Dell");
     	
+    	
+    	Laptop laptop1 = new Laptop();
+    	laptop1.setLid(102);
+    	laptop1.setLname("HP");
+    	
     	Student student = new Student();
     	student.setRollno(1);
     	student.setName("Rohit");
     	student.setMarks(50);
-    	student.setLaptop(laptop);
+    	student.getLaptop().add(laptop1);
+    	student.getLaptop().add(laptop);
     	
-    	//Configuration config = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
-//    	ServiceRegistry sr = (ServiceRegistry) new StandardServiceRegistryBuilder().configure(null)
+    	Student student1 = new Student();
+    	student1.setRollno(2);
+    	student1.setName("Ajit");
+    	student1.setMarks(20);
+    	student1.getLaptop().add(laptop1);
     	
+    	Student student2 = new Student();
+    	student2.setRollno(3);
+    	student2.setName(" Ankit");
+    	student2.setMarks(80);
+    	student2.getLaptop().add(laptop1);
+    	
+    	laptop.getStudent().add(student);
+    	laptop1.getStudent().add(student1);
+    	
+ 
     	
     	StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("persist.xml").build();
     	Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
@@ -37,6 +56,9 @@ public class App
     	
     	session.persist(laptop);
     	session.persist(student);
+    	session.persist(laptop1);
+    	session.persist(student1);
+    	session.persist(student2);
     	
     	transa.commit();
     	session.close();
