@@ -1,8 +1,11 @@
 package com.hibernatemapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,14 +17,14 @@ public class Student {
 	private String name;
 	private int marks;
 	
-	@OneToOne
-	private Laptop laptop;
+	@OneToMany
+	private List<Laptop> laptop = new ArrayList<Laptop>();
 	
 	
-	public Laptop getLaptop() {
+	public List<Laptop> getLaptop() {
 		return laptop;
 	}
-	public void setLaptop(Laptop laptop) {
+	public void setLaptop(List<Laptop> laptop) {
 		this.laptop = laptop;
 	}
 	public int getRollno() {
