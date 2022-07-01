@@ -1,11 +1,11 @@
-package com.hibernatemapping;
+package com.hibernatemapping.OneToOneEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="laptopnew")
+@Table(name="OTO_laptop1")
 public class Laptop {
 	
 	@Id

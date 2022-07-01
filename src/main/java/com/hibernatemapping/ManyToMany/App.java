@@ -1,4 +1,7 @@
-package com.hibernatemapping;
+package com.hibernatemapping.ManyToMany;
+
+import com.hibernatemapping.ManyToManyEntity.Laptop;
+import com.hibernatemapping.ManyToManyEntity.Student;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,15 +37,22 @@ public class App
     	student.setRollno(1);
     	student.setName("Rohit");
     	student.setMarks(50);
+    	
+    	Student student1 = new Student();
+    	student1.setRollno(2);
+    	student1.setName("Amit");
+    	student1.setMarks(80);
+    	
+    	
     	student.getLaptop().add(laptop);
     	student.getLaptop().add(laptop1);
+    	student1.getLaptop().add(laptop3);
+    	student.getLaptop().add(laptop3);
     	
 
-    	
-    
-    	
+   
  
-    	StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("persist.xml").build();
+    	StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("persistM-M.xml").build();
     	Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
     	SessionFactory factory = meta.getSessionFactoryBuilder().build();
     	Session session = factory.openSession();
@@ -54,6 +64,7 @@ public class App
     	session.persist(laptop2);
     	session.persist(laptop3);
     	session.persist(student);
+    	session.persist(student1);
     	
     	
     	transa.commit();
